@@ -32,33 +32,76 @@ RomanNumeral.propTypes = {
   decimalNumber: PropTypes.number
 };
 
+/*
+    gets the roman numerals
+    @ numeral1: number
+    @ numeral2: number              
+    @ repeatsOfNumeral2: number     how many times should the numeral2 be repeated
+*/
 const getRomanNumeral = (value, pos) => {
-  const romanNumerals = [
-    ["M"],
-    ["C", "D", "M"],
-    ["X", "L", "C"],
-    ["I", "V", "X"]
-  ];
-
   switch (value) {
     case 9:
-      return romanNumeral(romanNumerals[pos][0], romanNumerals[pos][2]);
+      return romanNumeral(
+        getRomanNumeralByPower(pos + 1, 0),
+        getRomanNumeralByPower(pos + 1, 2)
+      );
     case 8:
-      return romanNumeral(romanNumerals[pos][1], romanNumerals[pos][0], 3);
+      return romanNumeral(
+        getRomanNumeralByPower(pos + 1, 1),
+        getRomanNumeralByPower(pos + 1, 0),
+        3
+      );
     case 7:
-      return romanNumeral(romanNumerals[pos][1], romanNumerals[pos][0], 2);
+      return romanNumeral(
+        getRomanNumeralByPower(pos + 1, 1),
+        getRomanNumeralByPower(pos + 1, 0),
+        2
+      );
     case 6:
-      return romanNumeral(romanNumerals[pos][1], romanNumerals[pos][0]);
+      return romanNumeral(
+        getRomanNumeralByPower(pos + 1, 1),
+        getRomanNumeralByPower(pos + 1, 0)
+      );
     case 5:
-      return romanNumeral(romanNumerals[pos][1]);
+      return romanNumeral(getRomanNumeralByPower(pos + 1, 1));
     case 4:
-      return romanNumeral(romanNumerals[pos][0], romanNumerals[pos][1]);
+      return romanNumeral(
+        getRomanNumeralByPower(pos + 1, 0),
+        getRomanNumeralByPower(pos + 1, 1)
+      );
     case 3:
-      return romanNumeral(romanNumerals[pos][0], romanNumerals[pos][0], 2);
+      return romanNumeral(
+        getRomanNumeralByPower(pos + 1, 0),
+        getRomanNumeralByPower(pos + 1, 0),
+        2
+      );
     case 2:
-      return romanNumeral(romanNumerals[pos][0], romanNumerals[pos][0]);
+      return romanNumeral(
+        getRomanNumeralByPower(pos + 1, 0),
+        getRomanNumeralByPower(pos + 1, 0)
+      );
     case 1:
-      return romanNumeral(romanNumerals[pos][0]);
+      return romanNumeral(getRomanNumeralByPower(pos + 1, 0));
+    default:
+      return "";
+  }
+};
+
+/*
+    returns a roman numeral of the given power and index
+    @ power: number
+    @ index: number              
+*/
+const getRomanNumeralByPower = (power, index) => {
+  switch (power) {
+    case 1:
+      return index > 3 ? "" : "M";
+    case 2:
+      return ["C", "D", "M"][index] || "";
+    case 3:
+      return ["X", "L", "C"][index] || "";
+    case 4:
+      return ["I", "V", "X"][index] || "";
     default:
       return "";
   }
