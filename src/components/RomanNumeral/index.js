@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export const RomanNumeral = ({ decimalNumber }) => {
   const convertToRomanNumeral = decimalNum => {
-    // check if value is bigger than 3999 or small than 1
+    // check if value is bigger than 3999 or smaller than 1
     if (decimalNum <= 0 || decimalNum > 3999) {
       return "";
     }
