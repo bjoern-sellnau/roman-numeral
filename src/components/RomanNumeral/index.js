@@ -42,24 +42,41 @@ const getRomanNumeral = (value, pos) => {
 
   switch (value) {
     case 9:
-      return `${romanNumerals[pos][0]}${romanNumerals[pos][2]}`;
+      return romanNumeral(romanNumerals[pos][0], romanNumerals[pos][2]);
     case 8:
-      return `${romanNumerals[pos][1]}${romanNumerals[pos][0]}${romanNumerals[pos][0]}${romanNumerals[pos][0]}`;
+      return romanNumeral(romanNumerals[pos][1], romanNumerals[pos][0], 3);
     case 7:
-      return `${romanNumerals[pos][1]}${romanNumerals[pos][0]}${romanNumerals[pos][0]}`;
+      return romanNumeral(romanNumerals[pos][1], romanNumerals[pos][0], 2);
     case 6:
-      return `${romanNumerals[pos][1]}${romanNumerals[pos][0]}`;
+      return romanNumeral(romanNumerals[pos][1], romanNumerals[pos][0]);
     case 5:
-      return `${romanNumerals[pos][1]}`;
+      return romanNumeral(romanNumerals[pos][1]);
     case 4:
-      return `${romanNumerals[pos][0]}${romanNumerals[pos][1]}`;
+      return romanNumeral(romanNumerals[pos][0], romanNumerals[pos][1]);
     case 3:
-      return `${romanNumerals[pos][0]}${romanNumerals[pos][0]}${romanNumerals[pos][0]}`;
+      return romanNumeral(romanNumerals[pos][0], romanNumerals[pos][0], 2);
     case 2:
-      return `${romanNumerals[pos][0]}${romanNumerals[pos][0]}`;
+      return romanNumeral(romanNumerals[pos][0], romanNumerals[pos][0]);
     case 1:
-      return `${romanNumerals[pos][0]}`;
+      return romanNumeral(romanNumerals[pos][0]);
     default:
       return "";
   }
+};
+
+/*
+    constructs a part of a roman numeral
+    @ numeral1: number
+    @ numeral2: number              
+    @ repeatsOfNumeral2: number     how many times should the numeral2 be repeated
+*/
+const romanNumeral = (numeral1, numeral2, repeatsOfNumeral2 = 1) => {
+  let res = numeral1;
+  if (numeral2) {
+    for (let i = 0; i < repeatsOfNumeral2; i++) {
+      res += numeral2;
+    }
+  }
+
+  return res;
 };
