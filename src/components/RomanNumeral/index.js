@@ -3,6 +3,12 @@ import PropTypes from "prop-types";
 
 export const RomanNumeral = ({ decimalNumber }) => {
   const convertToRomanNumeral = decimalNum => {
+    const roman = decimalNum
+      .toString()
+      .padStart(4, 0)
+      .split("");
+    console.log(roman);
+
     if (decimalNum === 10) {
       return "X";
     }
@@ -23,3 +29,10 @@ export const RomanNumeral = ({ decimalNumber }) => {
 RomanNumeral.propTypes = {
   decimalNumber: PropTypes.number
 };
+
+/*
+THO;
+HUN;
+TEN;
+ONE;
+*/

@@ -26,17 +26,11 @@ describe("Basic tests", () => {
   });
 });
 
-describe("Value tests", () => {
+describe("Base Roman Signs", () => {
   it("1 should render a value of 'I'", () => {
     const { getByTestId } = render(<RomanNumeral decimalNumber={1} />);
 
     expect(getByTestId(/roman_numeral/i).textContent).toBe("I");
-  });
-
-  it("4 should render a value of 'IV'", () => {
-    const { getByTestId } = render(<RomanNumeral decimalNumber={4} />);
-
-    expect(getByTestId(/roman_numeral/i).textContent).toBe("IV");
   });
 
   it("5 should render a value of 'V'", () => {
@@ -45,16 +39,44 @@ describe("Value tests", () => {
     expect(getByTestId(/roman_numeral/i).textContent).toBe("V");
   });
 
-  it("9 should render a value of 'IX'", () => {
-    const { getByTestId } = render(<RomanNumeral decimalNumber={9} />);
-
-    expect(getByTestId(/roman_numeral/i).textContent).toBe("IX");
-  });
-
   it("10 should render a value of 'X'", () => {
     const { getByTestId } = render(<RomanNumeral decimalNumber={10} />);
 
     expect(getByTestId(/roman_numeral/i).textContent).toBe("X");
+  });
+  it("50 should render a value of 'L'", () => {
+    const { getByTestId } = render(<RomanNumeral decimalNumber={50} />);
+
+    expect(getByTestId(/roman_numeral/i).textContent).toBe("L");
+  });
+  it("100 should render a value of 'C'", () => {
+    const { getByTestId } = render(<RomanNumeral decimalNumber={100} />);
+
+    expect(getByTestId(/roman_numeral/i).textContent).toBe("C");
+  });
+  it("500 should render a value of 'CD", () => {
+    const { getByTestId } = render(<RomanNumeral decimalNumber={500} />);
+
+    expect(getByTestId(/roman_numeral/i).textContent).toBe("D");
+  });
+  it("1000 should render a value of 'M'", () => {
+    const { getByTestId } = render(<RomanNumeral decimalNumber={1000} />);
+
+    expect(getByTestId(/roman_numeral/i).textContent).toBe("M");
+  });
+});
+
+describe("Special Cases", () => {
+  it("4 should render a value of 'IV'", () => {
+    const { getByTestId } = render(<RomanNumeral decimalNumber={4} />);
+
+    expect(getByTestId(/roman_numeral/i).textContent).toBe("IV");
+  });
+
+  it("9 should render a value of 'IX'", () => {
+    const { getByTestId } = render(<RomanNumeral decimalNumber={9} />);
+
+    expect(getByTestId(/roman_numeral/i).textContent).toBe("IX");
   });
 
   it("36 should render a value of 'XXXVI'", () => {
@@ -73,5 +95,10 @@ describe("Value tests", () => {
     const { getByTestId } = render(<RomanNumeral decimalNumber={47} />);
 
     expect(getByTestId(/roman_numeral/i).textContent).toBe("XLVII");
+  });
+  it("3999 should render a value of 'MMMCMXCIX'", () => {
+    const { getByTestId } = render(<RomanNumeral decimalNumber={3999} />);
+
+    expect(getByTestId(/roman_numeral/i).textContent).toBe("MMMCMXCIX");
   });
 });
