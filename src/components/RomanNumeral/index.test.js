@@ -80,7 +80,7 @@ describe("Special Cases", () => {
   });
 
   it("36 should render a value of 'XXXVI'", () => {
-    const { getByTestId } = render(<RomanNumeral decimalNumber={99} />);
+    const { getByTestId } = render(<RomanNumeral decimalNumber={36} />);
 
     expect(getByTestId(/roman_numeral/i).textContent).toBe("XXXVI");
   });
@@ -100,5 +100,16 @@ describe("Special Cases", () => {
     const { getByTestId } = render(<RomanNumeral decimalNumber={3999} />);
 
     expect(getByTestId(/roman_numeral/i).textContent).toBe("MMMCMXCIX");
+  });
+
+  it("0 should render no number", () => {
+    const { getByTestId } = render(<RomanNumeral decimalNumber={0} />);
+
+    expect(getByTestId(/roman_numeral/i).textContent).toBe("");
+  });
+  it("4999 should render no number", () => {
+    const { getByTestId } = render(<RomanNumeral decimalNumber={4999} />);
+
+    expect(getByTestId(/roman_numeral/i).textContent).toBe("");
   });
 });
